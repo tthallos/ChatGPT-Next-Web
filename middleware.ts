@@ -20,7 +20,7 @@ function getIP(req: NextRequest) {
 }
 
 export function middleware(req: NextRequest) {
-  const accessCode = req.headers.get("access-code");
+  const accessCode = req.headers.get("access-code") || req.nextUrl.searchParams.get('access-code');
   const token = req.headers.get("token");
   const hashedCode = md5.hash(accessCode ?? "").trim();
 
